@@ -17,13 +17,22 @@ function changetext()
 	var person;
 	if(url.lastIndexOf('?') != -1) 
 	{
-		text = url.substring(url.indexOf('?')+1,url.lastIndexOf('?'));
-		person = url.substring(url.lastIndexOf('?')+1);
-		
-		text = decodeURIComponent(text);	
-		person = decodeURIComponent(person);
-		text = b64_to_utf8(text);
-		person = b64_to_utf8(person);
+		// Handle old-style ?[text]?[person] URLs
+		if (url.indexOf('?') != url.lastIndexOf('?')) {
+			text = url.substring(url.indexOf('?')+1, url.lastIndexOf('?'));
+			person = url.substring(url.lastIndexOf('?')+1);
+			text = decodeURIComponent(text);	
+			person = decodeURIComponent(person);
+			text = b64_to_utf8(text);
+			person = b64_to_utf8(person);
+		} else { // Handle new-style ?[text\0person] URLs
+			var combined = url.substring(url.indexOf('?') + 1);
+			combined = decodeURIComponent(combined);
+			combined = b64_to_utf8(combined);
+			var parts = combined.split('\0');
+			text = parts[0];
+			person = parts[1];
+		}
 		
 		//alert(text + " ## " + person);
 
@@ -55,7 +64,7 @@ function generate(){
 	var text = tb.value;
 	var tb2 = document.getElementById("tb2");
 	var text2 = tb2.value;
-	var data = utf8_to_b64(text) + "?" + utf8_to_b64(text2);
+	var data = utf8_to_b64(text + '\0' + text2).replace(/==$/, '');
 
 	url = url + data;
 	window.location.href = url
