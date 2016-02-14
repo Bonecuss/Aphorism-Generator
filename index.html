@@ -64,7 +64,7 @@ function generate(){
 	var text = tb.value;
 	var tb2 = document.getElementById("tb2");
 	var text2 = tb2.value;
-	var data = utf8_to_b64(text + '\0' + text2).replace(/==$/, '');
+	var data = utf8_to_b64(text + '\0' + text2).replace(/\=*$/, '');
 
 	url = url + data;
 	window.location.href = url
