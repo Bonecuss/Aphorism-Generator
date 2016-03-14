@@ -253,8 +253,8 @@ input#submit {
 </head>
 <body>
 	<div id="form">
-		<input type="text" name="tb" id="tb" value="Aphorism Text Here">
-		<input type="text" name="tb2" id="tb2" value="Author">
+		<input type="text" name="tb" id="tb" value="Aphorism Text Here" onclick="this.value='';" onfocus="this.value='';">
+		<input type="text" name="tb2" id="tb2" value="Author" onclick="this.value='';" onfocus="this.value='';">
 		<input type="submit" value="Generate" id="submit" onclick="generate()">
 	</div>
 	<div id="bg">
