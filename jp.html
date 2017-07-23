@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<!--Bonecuss @ Kazamatsuri.org-->
+<head>
+<title>名言 ジェネレイター</title>h
+<script>
+function utf8_to_b64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
+}
+function b64_to_utf8(str) {
+    return decodeURIComponent(escape(window.atob(str)));
+}
+function changetext()
+{
+	var url = window.location.href;
+	var text;
+	var person;
+	if(url.lastIndexOf('?') != -1) 
+	{
+		// Handle old-style ?[text]?[person] URLs
+		if (url.indexOf('?') != url.lastIndexOf('?')) {
+			text = url.substring(url.indexOf('?')+1, url.lastIndexOf('?'));
+			person = url.substring(url.lastIndexOf('?')+1);
+			text = decodeURIComponent(text);	
+			person = decodeURIComponent(person);
+			text = b64_to_utf8(text);
+			person = b64_to_utf8(person);
+		} else { // Handle new-style ?[text\0person] URLs
+			var combined = url.substring(url.indexOf('?') + 1);
+			combined = decodeURIComponent(combined);
+			combined = b64_to_utf8(combined);
+			var parts = combined.split('\0');
+			text = parts[0];
+			person = parts[1];
+		}
+		
+		//alert(text + " ## " + person);
+
+		document.getElementById("text").innerHTML = "<br> <br> <br> " + text;
+		document.getElementById("text2").innerHTML = "<br> <br> <br> " + text;
+		
+		if (!(text.length>40))
+		{
+			document.getElementById("person").innerHTML = "<br> <br> <br> <br>" + person;
+			document.getElementById("person2").innerHTML = "<br> <br> <br> <br>" + person;
+		}
+		else
+		{
+			document.getElementById("person").innerHTML = "<br> <br> <br> <br> <br>" + person;
+			document.getElementById("person2").innerHTML = "<br> <br> <br> <br> <br>" + person;
+		}
+		
+		var tb = document.getElementById("tb");
+		var tb2 = document.getElementById("tb2");
+		var submit = document.getElementById("submit");
+		tb.parentNode.removeChild(tb);
+		tb2.parentNode.removeChild(tb2);
+		submit.parentNode.removeChild(submit);
+	}
+}
+function generate(){
+	var url = window.location.href + "?";
+	var tb = document.getElementById("tb");
+	var text = tb.value;
+	var tb2 = document.getElementById("tb2");
+	var text2 = tb2.value;
+	var data = utf8_to_b64(text + '\0' + text2).replace(/\=*$/, '');
+
+	url = url + data;
+	window.location.href = url
+}
+</script>
+<style>
+body {
+	background-color:black;
+}
+div#bg{
+	background-color:black;
+	background-image: url("bg.png");
+	width:800px; 
+	height:320px; 
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	animation: bganim 15s linear forwards;
+}
+div#fade{
+	background-color:black;
+	width:800px; 
+	height:320px; 
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	opacity:0;
+	animation: fadeanim 15s linear forwards;
+}
+div#text{
+	text-shadow: 0px 0px 15px black;
+	font-size:35px;
+	font-family: "Monotype Corsiva";
+	text-align: center;
+	color:white;
+	vertical-align: middle;
+	width:520px; 
+	height:320px; 
+	position: absolute;
+	top: 50%;
+	left: 48%;
+	padding-right: 20px;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	animation: textfadeanim 2s linear 6.25s forwards;
+}
+div#text2{
+	text-shadow: 0px 0px 3px rgb(200,200,50);
+	font-size:35px;
+	font-family: "Monotype Corsiva";
+	text-align: center;
+	color:white;
+	vertical-align: middle;
+	width:520px; 
+	height:320px; 
+	position: absolute;
+	top: 50%;
+	left: 48%;
+	padding-right: 20px;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	animation: textfadeanim 2s linear 6.25s forwards;
+}
+div#person{
+	text-shadow: 0px 0px 15px black;
+	font-size:35px;
+	font-family: "Monotype Corsiva";
+	text-align: right;
+	color:white;
+	vertical-align: middle;
+	width:600px; 
+	height:320px; 
+	position: absolute;
+	top: 50%;
+	left: 55%;
+	padding-right: 400px;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	animation: textfadeanim 2s linear 6.25s forwards;
+}
+div#person2{
+	text-shadow: 0px 0px 3px rgb(200,200,50);
+	font-size:35px;
+	font-family: "Monotype Corsiva";
+	text-align: right;
+	color:white;
+	vertical-align: middle;
+	width:600px; 
+	height:320px; 
+	position: absolute;
+	top: 50%;
+	left: 55%;
+	padding-right: 400px;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	animation: textfadeanim 2s linear 6.25s forwards;
+}
+div#glow{
+	background-image: url("glow.png");
+	background-position: -900px -225px;
+	background-repeat: no-repeat;
+	width:800px; 
+	height:320px; 
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	animation: glowanim 5s linear 3.75s forwards;
+}
+div#form {
+	position: absolute;
+	top: 77%;
+	left: 50%;
+	width:800px; 
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	vertical-align: middle;
+}
+input#tb {
+	background-color : #0A0A0A;
+	border: 1px solid double #707070;
+	text-shadow: 0px 0px 15px black;
+	font-size:35px;
+	font-family: "Monotype Corsiva";
+	text-align: center;
+	color:white;
+	vertical-align: middle;
+	width:400px; 
+	height:40px; 
+
+}
+input#tb2 {
+	background-color : #0A0A0A;
+	border: 1px solid double #707070;
+	text-shadow: 0px 0px 15px black;
+	font-size:35px;
+	font-family: "Monotype Corsiva";
+	text-align: center;
+	color:white;
+	vertical-align: middle;
+	width:220px; 
+	height:40px; 
+}
+input#submit {
+	background-color : #0A0A0A;
+	border: 1px solid double #707070;
+	text-shadow: 0px 0px 15px black;
+	font-size:35px;
+	font-family: "Monotype Corsiva";
+	text-align: center;
+	color:white;
+	vertical-align: middle;
+	width:150px; 
+	height:46px; 
+}
+
+
+@keyframes bganim{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -200px 0px}
+}
+@keyframes glowanim{
+	0% {background-position: -900px -225px}
+	100% {background-position: 900px -225px}
+}
+@keyframes fadeanim{
+	0% {opacity:1;}
+	10% {opacity:1;}
+	25% {opacity:0;}
+	85% {opacity:0;}
+	100% {opacity:1}
+}
+@keyframes textfadeanim{
+	0% {opacity:0}
+	100% {opacity:1}
+}
+
+</style>
+</head>
+<body>
+	<div id="form">
+		<input type="text" name="tb" id="tb" value="テキスト" onclick="this.value='';" onfocus="this.value='';">
+		<input type="text" name="tb2" id="tb2" value="偉人名" onclick="this.value='';" onfocus="this.value='';">
+		<input type="submit" value="実行" id="submit" onclick="generate()">
+	</div>
+	<div id="bg">
+	</div>
+	<div id="text">	
+	<br>
+	<br>
+	<br>
+		猫も棒から落ちる
+	</div>
+	<div id="text2">	
+	<br>
+	<br>
+	<br>
+		猫も棒から落ちる
+	</div>
+	<div id="person">	
+	<br>
+	<br>
+	<br>
+	<br>
+		井ノ原 真人
+	</div>
+	<div id="person2">	
+	<br>
+	<br>
+	<br>
+	<br>
+		井ノ原 真人
+	</div>
+	<body onload="changetext();">
+	<div id="glow">
+	</div>
+	<div id="fade">
+	</div>
+</body>
+<audio id="bgm" autoplay="autoplay" controls="controls" hidden=true>  
+	<source src="EF_WR002.mp3" />  
+</audio>
+</html>
