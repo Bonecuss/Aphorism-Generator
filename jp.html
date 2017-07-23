@@ -71,6 +71,8 @@ function generate(){
 }
 </script>
 <style>
+@font-face { font-family: calligraphy; src: url('nagayama_kai08.otf'); } 
+
 body {
 	background-color:black;
 }
@@ -101,7 +103,7 @@ div#fade{
 div#text{
 	text-shadow: 0px 0px 15px black;
 	font-size:35px;
-	font-family: "Monotype Corsiva";
+	font-family: "calligraphy";
 	text-align: center;
 	color:white;
 	vertical-align: middle;
@@ -118,7 +120,7 @@ div#text{
 div#text2{
 	text-shadow: 0px 0px 3px rgb(200,200,50);
 	font-size:35px;
-	font-family: "Monotype Corsiva";
+	font-family: "calligraphy";
 	text-align: center;
 	color:white;
 	vertical-align: middle;
@@ -135,7 +137,7 @@ div#text2{
 div#person{
 	text-shadow: 0px 0px 15px black;
 	font-size:35px;
-	font-family: "Monotype Corsiva";
+	font-family: "calligraphy";
 	text-align: right;
 	color:white;
 	vertical-align: middle;
@@ -152,7 +154,7 @@ div#person{
 div#person2{
 	text-shadow: 0px 0px 3px rgb(200,200,50);
 	font-size:35px;
-	font-family: "Monotype Corsiva";
+	font-family: "calligraphy";
 	text-align: right;
 	color:white;
 	vertical-align: middle;
@@ -194,7 +196,7 @@ input#tb {
 	border: 1px solid double #707070;
 	text-shadow: 0px 0px 15px black;
 	font-size:35px;
-	font-family: "Monotype Corsiva";
+	font-family: "calligraphy";
 	text-align: center;
 	color:white;
 	vertical-align: middle;
@@ -207,7 +209,7 @@ input#tb2 {
 	border: 1px solid double #707070;
 	text-shadow: 0px 0px 15px black;
 	font-size:35px;
-	font-family: "Monotype Corsiva";
+	font-family: "calligraphy";
 	text-align: center;
 	color:white;
 	vertical-align: middle;
@@ -219,7 +221,7 @@ input#submit {
 	border: 1px solid double #707070;
 	text-shadow: 0px 0px 15px black;
 	font-size:35px;
-	font-family: "Monotype Corsiva";
+	font-family: "calligraphy";
 	text-align: center;
 	color:white;
 	vertical-align: middle;
@@ -253,8 +255,8 @@ input#submit {
 <body>
 	<div id="form">
 		<input type="text" name="tb" id="tb" value="名言" onclick="this.value='';" onfocus="this.value='';">
-		<input type="text" name="tb2" id="tb2" value="著者" onclick="this.value='';" onfocus="this.value='';">
-		<input type="submit" value="実行" id="submit" onclick="generate()">
+		<input type="text" name="tb2" id="tb2" value="原作者" onclick="this.value='';" onfocus="this.value='';">
+		<input type="submit" value="吟ずる！" id="submit" onclick="generate()">
 	</div>
 	<div id="bg">
 	</div>
