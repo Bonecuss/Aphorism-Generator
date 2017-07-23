@@ -2,7 +2,7 @@
 <html>
 <!--Bonecuss @ Kazamatsuri.org-->
 <head>
-<title>名言 ジェネレイター</title>h
+<title>名言 ジェネレイター</title>
 <script>
 function utf8_to_b64(str) {
     return window.btoa(unescape(encodeURIComponent(str)));
@@ -41,13 +41,13 @@ function changetext()
 		
 		if (!(text.length>40))
 		{
-			document.getElementById("person").innerHTML = "<br> <br> <br> <br>" + person;
-			document.getElementById("person2").innerHTML = "<br> <br> <br> <br>" + person;
+			document.getElementById("person").innerHTML = "<br> <br> <br> <br> <br>" + person;
+			document.getElementById("person2").innerHTML = "<br> <br> <br> <br> <br>" + person;
 		}
 		else
 		{
-			document.getElementById("person").innerHTML = "<br> <br> <br> <br> <br>" + person;
-			document.getElementById("person2").innerHTML = "<br> <br> <br> <br> <br>" + person;
+			document.getElementById("person").innerHTML = "<br> <br> <br> <br> <br> <br>" + person;
+			document.getElementById("person2").innerHTML = "<br> <br> <br> <br> <br> <br>" + person;
 		}
 		
 		var tb = document.getElementById("tb");
@@ -229,6 +229,11 @@ input#submit {
 	height:46px; 
 }
 
+a#language{
+	font-size:16px;
+	font-family: "Arial";
+	color:white;
+}
 
 @keyframes bganim{
 	0% {background-position: 0px 0px;}
@@ -253,6 +258,7 @@ input#submit {
 </style>
 </head>
 <body>
+	<a href="index.html" id="language">EN</a>
 	<div id="form">
 		<input type="text" name="tb" id="tb" value="名言" onclick="this.value='';" onfocus="this.value='';">
 		<input type="text" name="tb2" id="tb2" value="原作者" onclick="this.value='';" onfocus="this.value='';">
